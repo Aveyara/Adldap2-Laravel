@@ -177,6 +177,14 @@ class DatabaseUserProvider extends UserProvider
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function rehashPasswordIfRequired(Authenticatable $user, #[\SensitiveParameter] array $credentials, bool $force = false)
+    {
+        // Local passwords are managed by SyncPassword; rehashing here would store the LDAP password even with sync disabled.
+    }
+
+    /**
      * Determines if login fallback is enabled.
      *
      * @return bool
